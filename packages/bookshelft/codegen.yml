@@ -1,0 +1,14 @@
+overwrite: true
+schema: ${REACT_APP_BOOKSHELF_GRAPHQL}
+documents: './src/**/*.{ts,tsx}'
+generates:
+  src/generated/graphql.tsx:
+    plugins:
+      - 'typescript'
+      - 'typescript-operations'
+      - 'typescript-react-apollo'
+    config:
+      withHooks: true
+      withComponent: false
+      withHOC: false
+

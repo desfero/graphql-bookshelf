@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@apollo/react-hooks": "^3.0.0",
     "@bookshelf/layout": "1.0.0",
+    "apollo-boost": "^0.4.3",
+    "graphql": "^14.4.2",
     "isomorphic-fetch": "^2.2.1",
     "prop-types": "^15.7.2",
     "ramda": "^0.25.0",
@@ -28,6 +31,10 @@
     "typescript": "^3.5.3"
   },
   "devDependencies": {
+    "@graphql-codegen/cli": "^1.5.0",
+    "@graphql-codegen/typescript": "^1.5.0",
+    "@graphql-codegen/typescript-operations": "^1.5.0",
+    "@graphql-codegen/typescript-react-apollo": "^1.5.0",
     "@types/jest": "^24.0.17",
     "@types/node": "^12.7.1",
     "@types/react": "^16.8.25",
@@ -36,6 +43,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom"
+    "test": "react-scripts test --env=jsdom",
+    "codegen": "graphql-codegen --c codegen.yml -r dotenv/config"
   }
 }

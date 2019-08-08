@@ -8,7 +8,7 @@ import { criticalUIErrorSelector } from "../reducers";
 import { withStoreProvider } from "../hocs/withStoreProvider";
 import { AppLayout } from "./AppLayout";
 import { withI18N } from "../hocs/withI18N";
-import {withApolloProvider} from "../hocs/withApolloProvider";
+import { withApolloProvider } from "../hocs/withApolloProvider";
 
 const mapStateToProps = state => ({
   criticalUIError: criticalUIErrorSelector(state),

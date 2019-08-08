@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { BooksListQuery } from "../../generated/graphql";
 import { LayoutFunctionComponent } from "../../react-app-env";
 import { EDIT_ROUTE, withParams } from "../../constants/routes";
+import { Money } from "../../components/Money";
 
 type State = {
   selectedIds: number[];
@@ -53,9 +54,31 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
     selectedBooksReducer,
     initialState,
   );
+  const selectedBooksTotalPrice = React.useMemo(
+    () =>
+      state.selectedIds.reduce((total, bookId) => {
+        const book = books!.find(book => book!.id === bookId);
+
+        if (!book) {
+          throw new Error(`Book should be defined for ${bookId}`);
+        }
+
+        return total + book!.price;
+      }, 0),
+    [state.selectedIds],
+  );
 
   return (
     <section>
+      {state.selectedIds.length > 0 && (
+        <section>
+          <p>
+            {state.selectedIds.length} books selected with a total price of{" "}
+            <Money value={selectedBooksTotalPrice} />
+          </p>
+        </section>
+      )}
+
       {books!.map(book => {
         return (
           <article key={book!.id}>
@@ -93,6 +116,8 @@ BooksListLayout.fragment = gql`
   fragment BookItem on Book {
     id: bookId
     title
+    price
+    author
   }
 `;
 

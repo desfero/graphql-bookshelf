@@ -65,7 +65,7 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
 
         return total + book!.price;
       }, 0),
-    [state.selectedIds],
+    [state.selectedIds, books],
   );
 
   return (

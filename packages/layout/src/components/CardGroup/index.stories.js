@@ -2,7 +2,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import { cardType, Card, CardGroup, LinkCard } from "./";
-import { title, desc } from "./index.const";
+
+const title = "Card title";
+const desc = "Card description";
 
 storiesOf("CardGroup", module)
   .add("Card/default", () => (

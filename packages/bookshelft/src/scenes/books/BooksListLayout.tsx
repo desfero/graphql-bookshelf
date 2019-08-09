@@ -1,6 +1,7 @@
 import * as React from "react";
 import { gql } from "apollo-boost";
 import { Link } from "react-router-dom";
+import { CardGroup, Card, cardType } from "@bookshelf/layout";
 
 import { BooksListQuery } from "../../generated/graphql";
 import { LayoutFunctionComponent } from "../../react-app-env";
@@ -89,47 +90,58 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
         <p>You don't have any books selected</p>
       )}
 
-      {books!.map(book => {
-        return (
-          <article key={book!.id} data-test-id="books-list.book">
-            <h3 data-test-id="books-list.book.title">{book!.title}</h3>
-            <p>
-              Book price:{" "}
-              <Money data-test-id="books-list.book.price" value={book!.price} />
-            </p>
-            <p>
-              Book author:{" "}
-              <span data-test-id="books-list.book.author">{book!.author}</span>
-            </p>
-            <Link
-              to={withParams(EDIT_ROUTE, { bookId: book!.id })}
-              data-test-id="books-list.book.edit"
+      <CardGroup>
+        {books!.map(book => {
+          return (
+            <Card
+              type={cardType.default}
+              key={book!.id}
+              data-test-id="books-list.book"
             >
-              Edit book
-            </Link>
-            <input
-              type="checkbox"
-              checked={isSelectedSelector(state, book!.id)}
-              data-test-id="books-list.book.select"
-              onChange={e => {
-                const checked = e.target.checked;
+              <h3 data-test-id="books-list.book.title">{book!.title}</h3>
+              <p>
+                Book price:{" "}
+                <Money
+                  data-test-id="books-list.book.price"
+                  value={book!.price}
+                />
+              </p>
+              <p>
+                Book author:{" "}
+                <span data-test-id="books-list.book.author">
+                  {book!.author}
+                </span>
+              </p>
+              <Link
+                to={withParams(EDIT_ROUTE, { bookId: book!.id })}
+                data-test-id="books-list.book.edit"
+              >
+                Edit book
+              </Link>
+              <input
+                type="checkbox"
+                checked={isSelectedSelector(state, book!.id)}
+                data-test-id="books-list.book.select"
+                onChange={e => {
+                  const checked = e.target.checked;
 
-                if (checked) {
-                  dispatch({
-                    type: ActionTypes.ADD,
-                    payload: { bookId: book!.id },
-                  });
-                } else {
-                  dispatch({
-                    type: ActionTypes.REMOVE,
-                    payload: { bookId: book!.id },
-                  });
-                }
-              }}
-            />
-          </article>
-        );
-      })}
+                  if (checked) {
+                    dispatch({
+                      type: ActionTypes.ADD,
+                      payload: { bookId: book!.id },
+                    });
+                  } else {
+                    dispatch({
+                      type: ActionTypes.REMOVE,
+                      payload: { bookId: book!.id },
+                    });
+                  }
+                }}
+              />
+            </Card>
+          );
+        })}
+      </CardGroup>
     </section>
   );
 };

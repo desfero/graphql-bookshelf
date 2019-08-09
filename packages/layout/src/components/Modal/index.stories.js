@@ -3,7 +3,9 @@ import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
 
 import { Modal } from "./";
-import { title, desc } from "./index.const";
+
+const title = "Modal title";
+const desc = "Modal description";
 
 storiesOf("Modal", module).add("default", () => (
   <Modal isOpen={boolean("isOpen", true)}>

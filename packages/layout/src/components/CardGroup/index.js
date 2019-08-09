@@ -7,12 +7,12 @@ const CardGroup = styled.section`
   grid-gap: 25px;
 
   ${media.tablet`
-            grid-template-columns: 1fr 1fr;    
-       `}
+    grid-template-columns: 1fr 1fr;    
+  `}
 
   ${media.phone`
-            grid-template-columns: 1fr;    
-        `}
+    grid-template-columns: 1fr;    
+  `}
 `;
 
 export { cardType, Card, LinkCard } from "./Card";

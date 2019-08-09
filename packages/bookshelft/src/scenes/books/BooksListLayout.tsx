@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import { BooksListQuery } from "../../generated/graphql";
 import { LayoutFunctionComponent } from "../../react-app-env";
-import { EDIT_ROUTE, withParams } from "../../constants/routes";
+import { CREATE_ROUTE, EDIT_ROUTE, withParams } from "../../constants/routes";
 import { Money } from "../../components/Money";
 
 type State = {
@@ -70,13 +70,15 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
 
   return (
     <section>
-      {state.selectedIds.length > 0 && (
-        <section>
-          <p>
-            {state.selectedIds.length} books selected with a total price of{" "}
-            <Money value={selectedBooksTotalPrice} />
-          </p>
-        </section>
+      <Link to={CREATE_ROUTE}>Create New</Link>
+
+      {state.selectedIds.length > 0 ? (
+        <p>
+          {state.selectedIds.length} books selected with a total price of{" "}
+          <Money value={selectedBooksTotalPrice} />
+        </p>
+      ) : (
+        <p>You don't have any books selected</p>
       )}
 
       {books!.map(book => {

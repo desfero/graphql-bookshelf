@@ -4,20 +4,18 @@ import { BookForm } from "./BookForm";
 
 type ExternalProps = {
   onSubmit: (book: BookFormFragmentFragment) => void;
-  book: BookFormFragmentFragment;
 };
 
-const BookEditLayout: React.FunctionComponent<ExternalProps> = ({
-  book,
+const BookCreateLayout: React.FunctionComponent<ExternalProps> = ({
   onSubmit,
 }) => {
   return (
     <section>
-      <h2>Edit book {book.title}</h2>
+      <h2>Create new book</h2>
 
-      <BookForm book={book} onSubmit={onSubmit} />
+      <BookForm onSubmit={onSubmit} />
     </section>
   );
 };
 
-export { BookEditLayout };
+export { BookCreateLayout };

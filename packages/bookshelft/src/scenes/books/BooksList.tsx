@@ -2,10 +2,10 @@ import * as React from "react";
 import { gql } from "apollo-boost";
 
 import { BooksListLayout } from "./BooksListLayout";
-import { useBooksListQuery } from "../../generated/graphql";
+import { BooksListQuery, useBooksListQuery } from "../../generated/graphql";
 import { QueryFunctionComponent } from "../../react-app-env";
 
-const BooksList: QueryFunctionComponent = () => {
+const BooksList: QueryFunctionComponent<BooksListQuery> = () => {
   const { data, error, loading } = useBooksListQuery();
 
   if (loading) {

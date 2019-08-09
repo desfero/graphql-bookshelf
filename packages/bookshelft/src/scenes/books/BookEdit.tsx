@@ -26,7 +26,7 @@ const BookEdit: QueryFunctionComponent<ExternalProps & RouteComponentProps> = ({
 
   return (
     <BookEditLayout
-      {...data}
+      book={data.book!}
       onSubmit={async book => {
         await editBook({ variables: { ...book, bookId: id } });
 
@@ -39,8 +39,7 @@ const BookEdit: QueryFunctionComponent<ExternalProps & RouteComponentProps> = ({
 BookEdit.query = gql`
   query BookEdit($id: Int!) {
     book(bookId: $id) {
-      id: bookId
-      ...BookEditFragment
+      ...BookFormFragment
     }
   }
 
@@ -52,7 +51,7 @@ BookEdit.query = gql`
   ) {
     editBook(author: $author, bookId: $bookId, price: $price, title: $title) {
       id: bookId
-      ...BookEditFragment
+      ...BookFormFragment
     }
   }
 `;

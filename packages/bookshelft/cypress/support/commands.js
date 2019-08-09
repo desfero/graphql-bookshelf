@@ -1,1 +1,3 @@
-Cypress.Commands.add("tid", value => cy.get(`[data-test-id=${value}]`));
+Cypress.Commands.add("tid", (value, options) =>
+  cy.get(`[data-test-id~="${value}"]`, options),
+);

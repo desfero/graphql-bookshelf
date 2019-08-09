@@ -70,12 +70,20 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
 
   return (
     <section data-test-id="landing">
-      <Link to={CREATE_ROUTE}>Create New</Link>
+      <Link data-test-id="books-list.create-book" to={CREATE_ROUTE}>
+        Create New
+      </Link>
 
       {state.selectedIds.length > 0 ? (
         <p>
-          {state.selectedIds.length} books selected with a total price of{" "}
-          <Money value={selectedBooksTotalPrice} />
+          <span data-test-id="books-list.selected.total-selected">
+            {state.selectedIds.length}
+          </span>{" "}
+          books selected with a total price of{" "}
+          <Money
+            data-test-id="books-list.selected.total-price"
+            value={selectedBooksTotalPrice}
+          />
         </p>
       ) : (
         <p>You don't have any books selected</p>
@@ -83,14 +91,26 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
 
       {books!.map(book => {
         return (
-          <article key={book!.id}>
-            <h3>{book!.title}</h3>
-            <Link to={withParams(EDIT_ROUTE, { bookId: book!.id })}>
+          <article key={book!.id} data-test-id="books-list.book">
+            <h3 data-test-id="books-list.book.title">{book!.title}</h3>
+            <p>
+              Book price:{" "}
+              <Money data-test-id="books-list.book.price" value={book!.price} />
+            </p>
+            <p>
+              Book author:{" "}
+              <span data-test-id="books-list.book.author">{book!.author}</span>
+            </p>
+            <Link
+              to={withParams(EDIT_ROUTE, { bookId: book!.id })}
+              data-test-id="books-list.book.edit"
+            >
               Edit book
             </Link>
             <input
               type="checkbox"
               checked={isSelectedSelector(state, book!.id)}
+              data-test-id="books-list.book.select"
               onChange={e => {
                 const checked = e.target.checked;
 

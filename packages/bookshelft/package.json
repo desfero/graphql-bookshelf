@@ -33,6 +33,7 @@
     "yup": "^0.27.0"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "^4.1.0",
     "@graphql-codegen/cli": "^1.5.0",
     "@graphql-codegen/typescript": "^1.5.0",
     "@graphql-codegen/typescript-operations": "^1.5.0",
@@ -47,7 +48,8 @@
     "cypress": "^3.4.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
-    "react-test-renderer": "^16.8.6"
+    "react-test-renderer": "^16.8.6",
+    "ts-loader": "^6.0.4"
   },
   "scripts": {
     "start": "react-scripts start",

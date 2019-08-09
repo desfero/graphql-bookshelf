@@ -69,7 +69,7 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
   );
 
   return (
-    <section>
+    <section data-test-id="landing">
       <Link to={CREATE_ROUTE}>Create New</Link>
 
       {state.selectedIds.length > 0 ? (

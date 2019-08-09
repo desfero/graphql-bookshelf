@@ -44,6 +44,7 @@
     "@types/react-dom": "^16.8.5",
     "@types/react-router-dom": "^4.3.4",
     "@types/yup": "^0.26.22",
+    "cypress": "^3.4.1",
     "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "react-test-renderer": "^16.8.6"
@@ -52,6 +53,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "codegen": "graphql-codegen --c codegen.yml -r dotenv/config"
+    "codegen": "graphql-codegen --c codegen.yml -r dotenv/config",
+    "test:e2e:dev": "cypress open"
   }
 }

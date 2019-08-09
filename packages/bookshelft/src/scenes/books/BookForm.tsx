@@ -31,17 +31,25 @@ const BookForm: LayoutFunctionComponent<ExternalProps> = ({
   >
     {({ isSubmitting }) => (
       <Form>
-        <Field name="title" label="Title" />
+        <Field name="title" label="Title" data-test-id="book-form.title" />
 
-        <Field name="price" label="Price" />
+        <Field name="price" label="Price" data-test-id="book-form.price" />
 
-        <Field name="author" label="Author" />
+        <Field name="author" label="Author" data-test-id="book-form.author" />
 
-        <button type="submit" disabled={isSubmitting}>
+        <button
+          type="submit"
+          disabled={isSubmitting}
+          data-test-id="book-form.submit"
+        >
           Create
         </button>
 
-        <button type="button" onClick={onCancel}>
+        <button
+          type="button"
+          onClick={onCancel}
+          data-test-id="book-form.cancel"
+        >
           Cancel
         </button>
       </Form>

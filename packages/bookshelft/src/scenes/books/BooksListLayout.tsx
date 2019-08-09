@@ -70,7 +70,7 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
   );
 
   return (
-    <section data-test-id="landing">
+    <section data-test-id="books-list">
       <Link data-test-id="books-list.create-book" to={CREATE_ROUTE}>
         Create New
       </Link>
@@ -96,7 +96,7 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
             <Card
               type={cardType.default}
               key={book!.id}
-              data-test-id="books-list.book"
+              data-test-id={`books-list.book books-list.book.${book!.id}`}
             >
               <h3 data-test-id="books-list.book.title">{book!.title}</h3>
               <p>

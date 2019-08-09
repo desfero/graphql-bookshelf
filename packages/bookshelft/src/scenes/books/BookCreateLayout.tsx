@@ -1,19 +1,16 @@
 import * as React from "react";
-import { BookFormFragmentFragment } from "../../generated/graphql";
 import { BookForm } from "./BookForm";
 
-type ExternalProps = {
-  onSubmit: (book: BookFormFragmentFragment) => void;
-};
+type BookFormProps = React.ComponentProps<typeof BookForm>;
 
-const BookCreateLayout: React.FunctionComponent<ExternalProps> = ({
-  onSubmit,
-}) => {
+const BookCreateLayout: React.FunctionComponent<
+  Omit<BookFormProps, "book">
+> = ({ onSubmit, onCancel }) => {
   return (
     <section>
       <h2>Create new book</h2>
 
-      <BookForm onSubmit={onSubmit} />
+      <BookForm onSubmit={onSubmit} onCancel={onCancel} />
     </section>
   );
 };

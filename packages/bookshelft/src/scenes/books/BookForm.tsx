@@ -7,6 +7,7 @@ import { BookFormFragmentFragment } from "../../generated/graphql";
 
 type ExternalProps = {
   onSubmit: (book: BookFormFragmentFragment) => void;
+  onCancel: () => void;
   book?: BookFormFragmentFragment;
 };
 
@@ -19,6 +20,7 @@ const BookSchema = object({
 const BookForm: LayoutFunctionComponent<ExternalProps> = ({
   book,
   onSubmit,
+  onCancel,
 }) => (
   <Formik
     initialValues={book!}
@@ -37,7 +39,11 @@ const BookForm: LayoutFunctionComponent<ExternalProps> = ({
         <ErrorMessage name="author" component="div" />
 
         <button type="submit" disabled={isSubmitting}>
-          Submit
+          Create
+        </button>
+
+        <button type="button" onClick={onCancel}>
+          Cancel
         </button>
       </Form>
     )}

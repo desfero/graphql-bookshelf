@@ -34,6 +34,9 @@ const BookCreate: QueryFunctionComponent<RouteComponentProps> = ({
 
         history.push(ROOT_ROUTE);
       }}
+      onCancel={() => {
+        history.push(ROOT_ROUTE);
+      }}
     />
   );
 };

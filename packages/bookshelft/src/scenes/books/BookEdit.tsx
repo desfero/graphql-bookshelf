@@ -32,6 +32,9 @@ const BookEdit: QueryFunctionComponent<ExternalProps & RouteComponentProps> = ({
 
         history.push(ROOT_ROUTE);
       }}
+      onCancel={() => {
+        history.push(ROOT_ROUTE);
+      }}
     />
   );
 };

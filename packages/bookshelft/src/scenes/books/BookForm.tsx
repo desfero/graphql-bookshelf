@@ -1,9 +1,11 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as React from "react";
 import { number, object, string } from "yup";
+import { Form, Formik } from "formik";
 import { gql } from "apollo-boost";
+
 import { LayoutFunctionComponent } from "../../react-app-env";
 import { BookFormFragmentFragment } from "../../generated/graphql";
+import { Field } from "../../components/Field";
 
 type ExternalProps = {
   onSubmit: (book: BookFormFragmentFragment) => void;
@@ -29,14 +31,11 @@ const BookForm: LayoutFunctionComponent<ExternalProps> = ({
   >
     {({ isSubmitting }) => (
       <Form>
-        <Field type="text" name="title" />
-        <ErrorMessage name="title" component="div" />
+        <Field name="title" label="Title" />
 
-        <Field type="text" name="price" />
-        <ErrorMessage name="price" component="div" />
+        <Field name="price" label="Price" />
 
-        <Field type="text" name="author" />
-        <ErrorMessage name="author" component="div" />
+        <Field name="author" label="Author" />
 
         <button type="submit" disabled={isSubmitting}>
           Create

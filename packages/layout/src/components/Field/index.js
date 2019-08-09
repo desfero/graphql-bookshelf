@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import * as React from "react";
 
-const FieldBase = styled.div``;
+const FieldBase = styled.div`
+  margin-bottom: 1em;
+`;
 
 // TODO: #17 new styled-components use forwardRef under the hood so this may be no longer needed
 const Field = React.forwardRef((props, ref) => (

@@ -3,10 +3,10 @@ import { gql } from "apollo-boost";
 import { BigLoader } from "@bookshelf/layout";
 
 import { BooksListLayout } from "./BooksListLayout";
-import { BooksListQuery, useBooksListQuery } from "../../generated/graphql";
+import { useBooksListQuery } from "../../generated/graphql";
 import { QueryFunctionComponent } from "../../react-app-env";
 
-const BooksList: QueryFunctionComponent<BooksListQuery> = () => {
+const BooksList: QueryFunctionComponent = () => {
   const { data, loading } = useBooksListQuery();
 
   if (loading) {

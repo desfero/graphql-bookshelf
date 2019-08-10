@@ -102,7 +102,9 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
               key={book!.id}
               data-test-id={`books-list.book books-list.book.${book!.id}`}
             >
-              <h3 data-test-id="books-list.book.title">{book!.title}</h3>
+              <h3 data-test-id="books-list.book.title">
+                {book!.title} (${book!.id})
+              </h3>
               <p>
                 Book price:{" "}
                 <Money
@@ -142,7 +144,7 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
                 </label>
               </Field>
               <Link
-                to={withParams(EDIT_ROUTE, { bookId: book!.id })}
+                to={withParams(EDIT_ROUTE, { bookId: book!.id.toString() })}
                 data-test-id="books-list.book.edit"
               >
                 <EditIcon aria-label="Edit book" />

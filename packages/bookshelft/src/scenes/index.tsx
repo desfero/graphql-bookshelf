@@ -6,11 +6,7 @@ import { BooksList } from "./books/BooksList";
 import { BookEdit } from "./books/BookEdit";
 import { BookCreate } from "./books/BookCreate";
 
-const sagas = [];
-
-const reducers = {};
-
-const Scenes = () => (
+const Scenes: React.FunctionComponent = () => (
   <React.Fragment>
     <Switch>
       <Route path={ROOT_ROUTE} render={() => <BooksList />} exact={true} />
@@ -26,4 +22,4 @@ const Scenes = () => (
   </React.Fragment>
 );
 
-export { Scenes, sagas, reducers };
+export { Scenes };

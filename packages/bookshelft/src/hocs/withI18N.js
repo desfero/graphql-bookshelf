@@ -1,12 +1,9 @@
 import React from "react";
-import { compose } from "recompose";
 import { IntlProvider } from "react-intl";
-import { connect } from "react-redux";
 
-import { languageSelector } from "../reducers/locale";
 import { locales } from "../intl";
 
-const withI18NProvider = Wrapper => ({ locale, ...rest }) => (
+const withI18N = () => Wrapper => ({ locale = "en", ...rest }) => (
   <IntlProvider
     locale={locale}
     textComponent={React.Fragment}
@@ -15,13 +12,5 @@ const withI18NProvider = Wrapper => ({ locale, ...rest }) => (
     <Wrapper {...rest} />
   </IntlProvider>
 );
-
-const withI18N = () =>
-  compose(
-    connect(state => ({
-      locale: languageSelector(state),
-    })),
-    withI18NProvider,
-  );
 
 export { withI18N };

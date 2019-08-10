@@ -21,6 +21,11 @@ const Button = styled.button`
     border-color: #96c8da;
     box-shadow: 0 2px 3px 0 rgba(34, 36, 38, 0.15);
   }
+
+  &:disabled {
+    background: #cccccc;
+    cursor: not-allowed;
+  }
 `;
 
 export { Button };

@@ -2,6 +2,7 @@ import * as React from "react";
 import { gql } from "apollo-boost";
 import { Link } from "react-router-dom";
 import { CardGroup, Card, cardType, Field } from "@bookshelf/layout";
+import { FormattedMessage } from "react-intl";
 
 import { BooksListQuery } from "../../generated/graphql";
 import { LayoutFunctionComponent } from "../../react-app-env";
@@ -74,23 +75,30 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
   return (
     <section data-test-id="books-list">
       <Link data-test-id="books-list.create-book" to={CREATE_ROUTE}>
-        Create New
+        <FormattedMessage id="books.list.create-new" />
       </Link>
 
       <p role="region" aria-atomic="true" aria-live="polite">
         {state.selectedIds.length > 0 ? (
-          <>
-            <span data-test-id="books-list.selected.total-selected">
-              {state.selectedIds.length}
-            </span>{" "}
-            books selected with a total price of{" "}
-            <Money
-              data-test-id="books-list.selected.total-price"
-              value={selectedBooksTotalPrice}
-            />
-          </>
+          <FormattedMessage
+            id="books.list.books-selected"
+            values={{
+              totalSelectedNode: (
+                <span data-test-id="books-list.selected.total-selected">
+                  {state.selectedIds.length}
+                </span>
+              ),
+              totalSelected: state.selectedIds.length,
+              totalPriceNode: (
+                <Money
+                  data-test-id="books-list.selected.total-price"
+                  value={selectedBooksTotalPrice}
+                />
+              ),
+            }}
+          />
         ) : (
-          "You don't have any books selected"
+          <FormattedMessage id="books.list.no-books-selected" />
         )}
       </p>
 
@@ -106,17 +114,29 @@ const BooksListLayout: LayoutFunctionComponent<BooksListQuery> = ({
                 {book!.title} (${book!.id})
               </h3>
               <p>
-                Book price:{" "}
-                <Money
-                  data-test-id="books-list.book.price"
-                  value={book!.price}
+                <FormattedMessage
+                  id="books.list.book.price"
+                  values={{
+                    price: (
+                      <Money
+                        data-test-id="books-list.book.price"
+                        value={book!.price}
+                      />
+                    ),
+                  }}
                 />
               </p>
               <p>
-                Book author:{" "}
-                <span data-test-id="books-list.book.author">
-                  {book!.author}
-                </span>
+                <FormattedMessage
+                  id="books.list.book.author"
+                  values={{
+                    author: (
+                      <span data-test-id="books-list.book.author">
+                        {book!.author}
+                      </span>
+                    ),
+                  }}
+                />
               </p>
               <Field>
                 <label>

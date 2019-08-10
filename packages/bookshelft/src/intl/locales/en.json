@@ -1,1 +1,15 @@
-{}
+{
+  "books.list.create-new": "Create new",
+  "books.list.book.price": "Book price: {price}",
+  "books.list.book.author": "Book author: {author}",
+  "books.list.no-books-selected": "You don't have any books selected",
+  "books.list.books-selected": "{totalSelectedNode} {totalSelected, plural, one {book} other {books}} selected with a total price of {totalPriceNode}",
+  "books.book-form.title": "Title",
+  "books.book-form.price": "Price",
+  "books.book-form.author": "Author",
+  "books.book-form.create": "Create",
+  "books.book-form.save": "Save",
+  "books.book-form.cancel": "Cancel",
+  "books.edit.heading": "Edit book {title}",
+  "books.create.heading": "Create new book"
+}

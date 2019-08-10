@@ -1,9 +1,12 @@
 import React from "react";
 import { IntlProvider } from "react-intl";
 
-import { locales } from "../intl";
+import { locales, LANGUAGE } from "../intl";
 
-const withI18N = () => Wrapper => ({ locale = "en", ...rest }) => (
+const withI18N = () => (Wrapper: React.ComponentType<unknown>) => ({
+  locale = LANGUAGE.EN,
+  ...rest
+}) => (
   <IntlProvider
     locale={locale}
     textComponent={React.Fragment}

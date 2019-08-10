@@ -1,4 +1,6 @@
 import * as React from "react";
+import { FormattedMessage } from "react-intl";
+
 import { BookForm } from "./BookForm";
 import { RequiredByKeys } from "../../react-app-env";
 
@@ -9,7 +11,12 @@ const BookEditLayout: React.FunctionComponent<
 > = ({ book, onSubmit, onCancel }) => {
   return (
     <section>
-      <h2>Edit book {book.title}</h2>
+      <h2>
+        <FormattedMessage
+          id="books.edit.heading"
+          values={{ title: book.title }}
+        />
+      </h2>
 
       <BookForm book={book} onSubmit={onSubmit} onCancel={onCancel} />
     </section>

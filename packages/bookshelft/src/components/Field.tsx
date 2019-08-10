@@ -4,7 +4,7 @@ import { ErrorMessage, FieldProps, Field as FormikField } from "formik";
 import { Input, Field as FormField, Label } from "@bookshelf/layout";
 
 type TExternalProps = {
-  label: string;
+  label: React.ReactNode;
   name: string;
   placeholder?: string;
 };

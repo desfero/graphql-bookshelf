@@ -9,7 +9,6 @@ const base = {
   mainColor: "#F5C34C",
   failureColor: "#f54f2e",
   containerWidth: "700px",
-  modalWidth: "500px",
 };
 
 const theme = {

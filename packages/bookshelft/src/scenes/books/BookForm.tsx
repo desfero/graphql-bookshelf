@@ -3,10 +3,12 @@ import { number, object, string } from "yup";
 import { Form, Formik } from "formik";
 import { gql } from "apollo-boost";
 import { FormattedMessage } from "react-intl";
+import { Button } from "@bookshelf/layout";
 
 import { LayoutFunctionComponent } from "../../react-app-env";
 import { BookFormFragmentFragment } from "../../generated/graphql";
 import { Field } from "../../components/Field";
+import styled from "styled-components";
 
 type ExternalProps = {
   onSubmit: (book: BookFormFragmentFragment) => void;
@@ -19,6 +21,15 @@ const BookSchema = object({
   price: number().required(),
   author: string().required(),
 });
+
+const Buttons = styled.div`
+  margin-top: 2em;
+  text-align: right;
+  
+  ${Button} + ${Button} {
+    margin-left: 1em;
+  }
+`;
 
 const BookForm: LayoutFunctionComponent<ExternalProps> = ({
   book,
@@ -50,25 +61,27 @@ const BookForm: LayoutFunctionComponent<ExternalProps> = ({
           data-test-id="book-form.author"
         />
 
-        <button
-          type="submit"
-          disabled={isSubmitting}
-          data-test-id="book-form.submit"
-        >
-          {book ? (
-            <FormattedMessage id="books.book-form.save" />
-          ) : (
-            <FormattedMessage id="books.book-form.create" />
-          )}
-        </button>
+        <Buttons>
+          <Button
+            type="submit"
+            disabled={isSubmitting}
+            data-test-id="book-form.submit"
+          >
+            {book ? (
+              <FormattedMessage id="books.book-form.save" />
+            ) : (
+              <FormattedMessage id="books.book-form.create" />
+            )}
+          </Button>
 
-        <button
-          type="button"
-          onClick={onCancel}
-          data-test-id="book-form.cancel"
-        >
-          <FormattedMessage id="books.book-form.cancel" />
-        </button>
+          <Button
+            type="button"
+            onClick={onCancel}
+            data-test-id="book-form.cancel"
+          >
+            <FormattedMessage id="books.book-form.cancel" />
+          </Button>
+        </Buttons>
       </Form>
     )}
   </Formik>

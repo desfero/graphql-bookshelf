@@ -5,6 +5,7 @@ export { Field } from "./components/Field";
 export { Input } from "./components/Input";
 export { InputError } from "./components/InputError";
 export { Label } from "./components/Label";
+export { Button } from "./components/Button";
 
 // Helpers
 export { styled } from "./helpers/styled";

@@ -32,6 +32,7 @@ const shouldShowErrorMessage = ({ field, form }: FieldProps) => {
  */
 const generateErrorId = (name: string) => `${name}_error`;
 
+// TODO: Add support for select, radio, checkbox
 const Field: React.FunctionComponent<TExternalProps> = ({
   name,
   label,

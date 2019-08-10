@@ -11,14 +11,11 @@ class RootErrorBoundary extends React.Component<RouteComponentProps> {
     hasError: false,
   };
 
-  static getDerivedStateFromError() {
-    return { hasError: true };
-  }
-
   componentDidCatch(error: Error, errorInfo: unknown) {
     if (error instanceof NotFoundError) {
       this.props.history.push(NOT_FOUND_ROUTE);
     } else {
+      this.setState({ hasError: true });
       Raven.captureException(error, { extra: errorInfo });
     }
   }

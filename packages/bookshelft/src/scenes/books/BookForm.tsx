@@ -42,7 +42,7 @@ const BookForm: LayoutFunctionComponent<ExternalProps> = ({
           disabled={isSubmitting}
           data-test-id="book-form.submit"
         >
-          Create
+          {book ? "Save" : "Create"}
         </button>
 
         <button

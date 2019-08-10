@@ -27,28 +27,41 @@ const shouldShowErrorMessage = ({ field, form }: FieldProps) => {
   return form.touched[field.name] || form.submitCount > 0;
 };
 
+/**
+ * Generate the error id used to associate error with input element
+ */
+const generateErrorId = (name: string) => `${name}_error`;
+
 const Field: React.FunctionComponent<TExternalProps> = ({
   name,
   label,
   ...props
 }) => (
   <FormikField name={name}>
-    {(fieldProps: FieldProps) => (
-      <FormField>
-        <Label>{label}</Label>
+    {(fieldProps: FieldProps) => {
+      const isInvalid = shouldShowErrorMessage(fieldProps);
 
-        <Input
-          {...fieldProps.field}
-          {...props}
-          type="text"
-          value={getValue(fieldProps.field.value)}
-        />
+      return (
+        <FormField>
+          <Label>{label}</Label>
 
-        {shouldShowErrorMessage(fieldProps) && (
-          <InputError>{fieldProps.form.errors[name]}</InputError>
-        )}
-      </FormField>
-    )}
+          <Input
+            {...fieldProps.field}
+            {...props}
+            aria-invalid={isInvalid}
+            aria-describedby={generateErrorId(name)}
+            type="text"
+            value={getValue(fieldProps.field.value)}
+          />
+
+          {isInvalid && (
+            <InputError id={generateErrorId(name)}>
+              {fieldProps.form.errors[name]}
+            </InputError>
+          )}
+        </FormField>
+      );
+    }}
   </FormikField>
 );
 

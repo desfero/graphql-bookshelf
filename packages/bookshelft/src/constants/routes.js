@@ -2,6 +2,9 @@ import { curry } from "ramda";
 
 export const ROOT_ROUTE = "/";
 
+// TODO: Add 404 page
+export const NOT_FOUND_ROUTE = ROOT_ROUTE;
+
 export const EDIT_ROUTE = "/:bookId/edit";
 
 export const CREATE_ROUTE = "/create";

@@ -31,4 +31,14 @@ describe("Book Edit", () => {
 
     assertBooksList();
   });
+
+  // This test will only work with production build of react
+  // as otherwise NotFoundError is rethrown and cathed by onerror handler
+  // which in turn stops cypress running test
+  it("should redirect to list when book not found", () => {
+    // manually go to the route to simulate failure
+    cy.visit("/12345678/edit");
+
+    assertBooksList();
+  });
 });

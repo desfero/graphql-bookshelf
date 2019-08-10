@@ -15,14 +15,14 @@ const BookCreate: QueryFunctionComponent<RouteComponentProps> = ({
   history,
 }) => {
   const [createBook] = useCreateBookMutation({
-    update(cache, { data: { createBook } }) {
+    update(cache, { data }) {
       const query = BooksListDocument;
 
       const { books } = cache.readQuery<BooksListQuery>({ query })!;
 
       cache.writeQuery({
         query,
-        data: { books: books!.concat(createBook) },
+        data: { books: books!.concat(data!.createBook) },
       });
     },
   });

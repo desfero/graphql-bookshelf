@@ -4,14 +4,13 @@ describe("Books list", () => {
   it("should load books with title, price, author checkbox and edit icon", () => {
     visitBooksList();
 
-    cy.tid("books-list.book.1")
-      .within(() => {
-        cy.tid("books-list.book.title").should("exist");
-        cy.tid("books-list.book.price").should("exist");
-        cy.tid("books-list.book.author").should("exist");
-        cy.tid("books-list.book.select").should("exist");
-        cy.tid("books-list.book.edit").should("exist");
-      });
+    cy.tid("books-list.book.1").within(() => {
+      cy.tid("books-list.book.title").should("exist");
+      cy.tid("books-list.book.price").should("exist");
+      cy.tid("books-list.book.author").should("exist");
+      cy.tid("books-list.book.select").should("exist");
+      cy.tid("books-list.book.edit").should("exist");
+    });
   });
 
   it("should calculate total price for selected books", () => {

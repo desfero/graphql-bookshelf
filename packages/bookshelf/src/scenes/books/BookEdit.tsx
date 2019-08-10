@@ -8,8 +8,13 @@ import { QueryFunctionComponent } from "../../react-app-env";
 import { RouteComponentProps, withRouter } from "react-router";
 import { ROOT_ROUTE } from "../../constants/routes";
 import { NotFoundError } from "../../constants/errors";
+import { withSceneTitle } from "../../hocs/withSceneTitle";
 
 type ExternalProps = { id: number };
+
+const BookEditLayoutWithTitle = withSceneTitle<
+  React.ComponentProps<typeof BookEditLayout>
+>(props => `Edit ${props.book.title}`)(BookEditLayout);
 
 const BookEdit: QueryFunctionComponent<ExternalProps & RouteComponentProps> = ({
   id,
@@ -27,7 +32,7 @@ const BookEdit: QueryFunctionComponent<ExternalProps & RouteComponentProps> = ({
   }
 
   return (
-    <BookEditLayout
+    <BookEditLayoutWithTitle
       book={data!.book!}
       onSubmit={async book => {
         await editBook({ variables: { ...book, bookId: id } });

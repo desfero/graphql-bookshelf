@@ -5,6 +5,7 @@ import { BigLoader } from "@bookshelf/layout";
 import { BooksListLayout } from "./BooksListLayout";
 import { useBooksListQuery } from "../../generated/graphql";
 import { QueryFunctionComponent } from "../../react-app-env";
+import { withSceneTitle } from "../../hocs/withSceneTitle";
 
 const BooksList: QueryFunctionComponent = () => {
   const { data, loading } = useBooksListQuery();
@@ -24,4 +25,6 @@ BooksList.query = gql`
   }
 `;
 
-export { BooksList };
+const BooksListWithTitle = withSceneTitle(() => "Books List")(BooksList);
+
+export { BooksListWithTitle as BooksList };

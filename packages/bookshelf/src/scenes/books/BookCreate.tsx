@@ -1,5 +1,6 @@
 import * as React from "react";
 import { gql } from "apollo-boost";
+import { compose } from "recompose";
 
 import {
   BooksListDocument,
@@ -10,6 +11,7 @@ import { QueryFunctionComponent } from "../../react-app-env";
 import { RouteComponentProps, withRouter } from "react-router";
 import { ROOT_ROUTE } from "../../constants/routes";
 import { BookCreateLayout } from "./BookCreateLayout";
+import { withSceneTitle } from "../../hocs/withSceneTitle";
 
 const BookCreate: QueryFunctionComponent<RouteComponentProps> = ({
   history,
@@ -50,6 +52,9 @@ BookCreate.query = gql`
   }
 `;
 
-const BookCreateWithRouter = withRouter(BookCreate);
+const BookCreateWithRouter = compose<RouteComponentProps, {}>(
+  withRouter,
+  withSceneTitle(() => "Create new book"),
+)(BookCreate);
 
 export { BookCreateWithRouter as BookCreate };

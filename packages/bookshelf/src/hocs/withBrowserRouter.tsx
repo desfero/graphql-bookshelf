@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-const withBrowserRouter = () => Wrapper => props => (
+const withBrowserRouter = () => <P extends {}>(
+  Wrapper: React.ComponentType<P>,
+) => (props: P) => (
   <BrowserRouter>
     <Wrapper {...props} />
   </BrowserRouter>

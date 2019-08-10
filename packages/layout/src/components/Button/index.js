@@ -6,7 +6,7 @@ const Button = styled.button`
   border: 1px solid rgba(34, 36, 38, 0.15);
   box-shadow: none;
   color: rgba(0, 0, 0, 0.87);
-  cursor: pointer;  
+  cursor: pointer;
   display: inline-block;
   font-size: 14px;
   line-height: 1em;

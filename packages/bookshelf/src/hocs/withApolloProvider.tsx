@@ -6,7 +6,9 @@ const client = new ApolloClient({
   uri: process.env.REACT_APP_BOOKSHELF_GRAPHQL,
 });
 
-const withApolloProvider = () => Wrapper => props => (
+const withApolloProvider = () => <P extends {}>(
+  Wrapper: React.ComponentType<P>,
+) => (props: P) => (
   <ApolloProvider client={client}>
     <Wrapper {...props} />
   </ApolloProvider>

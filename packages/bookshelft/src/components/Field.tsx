@@ -1,7 +1,12 @@
 import * as React from "react";
 import { defaultTo } from "ramda";
-import { ErrorMessage, FieldProps, Field as FormikField } from "formik";
-import { Input, Field as FormField, Label } from "@bookshelf/layout";
+import { FieldProps, Field as FormikField } from "formik";
+import {
+  Input,
+  Field as FormField,
+  Label,
+  InputError,
+} from "@bookshelf/layout";
 
 type TExternalProps = {
   label: React.ReactNode;
@@ -11,22 +16,37 @@ type TExternalProps = {
 
 const getValue = defaultTo("");
 
+/**
+ * Check whether we should show error message to the user
+ */
+const shouldShowErrorMessage = ({ field, form }: FieldProps) => {
+  if (!form.errors[field.name]) {
+    return false;
+  }
+
+  return form.touched[field.name] || form.submitCount > 0;
+};
+
 const Field: React.FunctionComponent<TExternalProps> = ({
   name,
   label,
   ...props
 }) => (
   <FormikField name={name}>
-    {({ field }: FieldProps) => (
+    {(fieldProps: FieldProps) => (
       <FormField>
         <Label>{label}</Label>
+
         <Input
-          {...field}
+          {...fieldProps.field}
           {...props}
           type="text"
-          value={getValue(field.value)}
+          value={getValue(fieldProps.field.value)}
         />
-        <ErrorMessage name={name} component="div" />
+
+        {shouldShowErrorMessage(fieldProps) && (
+          <InputError>{fieldProps.form.errors[name]}</InputError>
+        )}
       </FormField>
     )}
   </FormikField>
